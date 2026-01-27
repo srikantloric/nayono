@@ -33,6 +33,7 @@ export type FirebaseContextType = {
   isLoggedIn: boolean;
   isInitialized?: boolean;
   user?: UserProfile | null | undefined;
+  db: firebase.firestore.Firestore;
   logout: () => Promise<void>;
   login: () => void;
   firebaseRegister: (email: string, password: string) => Promise<firebase.auth.UserCredential>;

@@ -3,6 +3,7 @@ import { createContext, useEffect, useReducer, ReactElement } from 'react';
 // third-party
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 // action - state management
 import { LOGIN, LOGOUT } from 'contexts/auth-reducer/actions';
@@ -34,6 +35,8 @@ const initialState: AuthProps = {
   isInitialized: false,
   user: null
 };
+
+const db = firebase.firestore();
 
 // ==============================|| FIREBASE CONTEXT & PROVIDER ||============================== //
 
@@ -109,6 +112,7 @@ export const FirebaseProvider = ({ children }: { children: ReactElement }) => {
     <FirebaseContext
       value={{
         ...state,
+        db,
         firebaseRegister,
         firebaseEmailPasswordSignIn,
         login: () => {},

@@ -5,8 +5,11 @@ import Loadable from 'components/Loadable';
 
 import DashboardLayout from 'layout/Dashboard';
 import PagesLayout from 'layout/Pages';
-import Dashboard from 'pages/dashboard/Dashboard';
-
+import Dashboard from 'pages/dashboard/dashboard';
+import Customers from 'pages/customers/customers';
+import Events from 'pages/events/events';
+import PhotoSelection from 'pages/photoSelection/photoSelection';
+import Subscription from 'pages/subscription/subscription';
 
 // pages routing
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/error/404')));
@@ -23,13 +26,14 @@ const MainRoutes = {
   path: '/',
   children: [
     {
-      path: '/',
       element: <DashboardLayout />,
       children: [
-        {
-          path: 'dashboard',
-          element: <Dashboard />
-        }
+        { index: true, element: <Dashboard /> },
+        { path: 'dashboard', element: <Dashboard /> },
+        { path: 'customers', element: <Customers /> },
+        { path: 'events', element: <Events /> },
+        { path: 'photoSelection', element: <PhotoSelection /> },
+        { path: 'subscription', element: <Subscription /> }
       ]
     },
     { path: '*', element: <MaintenanceError /> }
