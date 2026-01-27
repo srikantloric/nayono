@@ -53,7 +53,7 @@ export default function FormCustomerAdd({
   customer: CustomerList | null;
   closeModal: () => void;
 }) {
-  const { db } = useFirebase();
+  const { db, user } = useFirebase();
 
   const formik = useFormik({
     initialValues: getInitialValues(customer),
@@ -77,7 +77,7 @@ export default function FormCustomerAdd({
             ...values,
             customerId: crypto.randomUUID(),
             id: Math.floor(Math.random() * 10000),
-            userId: ''
+            userId: user?.id || ''
           });
 
           openSnackbar({
