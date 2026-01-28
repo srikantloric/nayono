@@ -75,10 +75,9 @@ export default function FormCustomerAdd({
           // ✅ ADD
           await insertCustomer(db, {
             ...values,
-            customerId: crypto.randomUUID(),
             id: Math.floor(Math.random() * 10000),
             userId: user?.id || ''
-          });
+          });          
 
           openSnackbar({
             open: true,

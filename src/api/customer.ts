@@ -61,12 +61,17 @@ export function useGetCustomer() {
  */
 export async function insertCustomer(
   db: firebase.firestore.Firestore,
-  newCustomer: Omit<CustomerList, 'docId'>
+  newCustomer: Omit<CustomerList, 'docId' | 'customerId'>
 ) {
-  await db.collection('customers').add({
+  const docRef = db.collection('customers').doc(); // 🔥 creates doc reference
+
+  await docRef.set({
     ...newCustomer,
+    customerId: docRef.id, // ✅ SAME as document ID
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
   });
+
+  return docRef.id;
 }
 
 /**
