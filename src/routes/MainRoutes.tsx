@@ -10,6 +10,7 @@ import Customers from 'pages/customers/customers';
 import Events from 'pages/events/events';
 import PhotoSelection from 'pages/photoSelection/photoSelection';
 import Subscription from 'pages/subscription/subscription';
+import Profile from 'pages/profile/profile';
 
 // pages routing
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/error/404')));
@@ -33,7 +34,8 @@ const MainRoutes = {
         { path: 'customers', element: <Customers /> },
         { path: 'events', element: <Events /> },
         { path: 'photoSelection', element: <PhotoSelection /> },
-        { path: 'subscription', element: <Subscription /> }
+        { path: 'subscription', element: <Subscription /> },
+        { path: 'profile', element: <Profile /> }
       ]
     },
     { path: '*', element: <MaintenanceError /> }
