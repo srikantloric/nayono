@@ -58,7 +58,10 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
   );
 
   const { pathname } = useLocation();
-  const isSelected = !!matchPath({ path: item?.link ? item.link : item.url!, end: false }, pathname);
+  const isSelected = !!matchPath(
+    { path: item?.link ? item.link : item.url!, end: true },
+    pathname
+  );
 
   const iconSelectedColor = 'primary.main';
 
@@ -77,7 +80,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           <ListItemButton
             component={Link}
             to={item.url!}
-            target={itemTarget}
+            {...(item.target && { target: '_blank' })}
             disabled={item.disabled}
             selected={isSelected}
             sx={(theme) => ({
@@ -90,11 +93,11 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
               }),
               ...(drawerOpen &&
                 level === 1 && {
-                  mx: 1.25,
-                  my: 0.5,
-                  borderRadius: 1,
-                  '&:hover': { bgcolor: 'secondary.200', ...theme.applyStyles('dark', { bgcolor: 'divider' }) }
-                }),
+                mx: 1.25,
+                my: 0.5,
+                borderRadius: 1,
+                '&:hover': { bgcolor: 'secondary.200', ...theme.applyStyles('dark', { bgcolor: 'divider' }) }
+              }),
               ...(!drawerOpen && {
                 px: 2.75,
                 justifyContent: 'center',
@@ -113,19 +116,19 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   ...(isSelected && { color: iconSelectedColor }),
                   ...(!drawerOpen &&
                     level === 1 && {
-                      borderRadius: 1,
-                      width: 46,
-                      height: 46,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      '&:hover': { bgcolor: 'secondary.200', ...theme.applyStyles('dark', { bgcolor: 'divider' }) }
-                    }),
+                    borderRadius: 1,
+                    width: 46,
+                    height: 46,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    '&:hover': { bgcolor: 'secondary.200', ...theme.applyStyles('dark', { bgcolor: 'divider' }) }
+                  }),
                   ...(!drawerOpen &&
                     isSelected && {
-                      bgcolor: 'primary.lighter',
-                      '&:hover': { bgcolor: 'primary.lighter' },
-                      ...theme.applyStyles('dark', { bgcolor: 'divider', '&:hover': { bgcolor: 'divider' } })
-                    })
+                    bgcolor: 'primary.lighter',
+                    '&:hover': { bgcolor: 'primary.lighter' },
+                    ...theme.applyStyles('dark', { bgcolor: 'divider', '&:hover': { bgcolor: 'divider' } })
+                  })
                 })}
               >
                 {itemIcon}

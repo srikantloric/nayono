@@ -37,6 +37,11 @@ export enum NavActionType {
   LINK = 'link'
 }
 
+export enum Gender {
+  MALE = 'Male',
+  FEMALE = 'Female'
+}
+
 export const DEFAULT_THEME_MODE: ThemeMode = ThemeMode.SYSTEM;
 
 // ==============================|| THEME CONFIG ||============================== //
